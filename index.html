@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LED Control</title>
+</head>
+<body>
+    <h1>LED Control Panel</h1>
+    <button onclick="controlLED('on')">Turn LED On</button>
+    <button onclick="controlLED('off')">Turn LED Off</button>
+
+    <script>
+        function controlLED(state) {
+            fetch(`http://your_pico_ip/${state}`)
+                .then(response => {
+                    if (response.ok) {
+                        console.log(`LED ${state}`);
+                    } else {
+                        console.error('Failed to control LED');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
